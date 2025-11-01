@@ -40,7 +40,7 @@ def normalize_en(item):
         return {
                 "_id": item.get("_id"),
                 "name_en": item.get("hotel name","").strip(),
-                "addr_en": item.get("adress","").strip()
+                "addr_en": item.get("address","").strip()
         }
 
 merged = []
