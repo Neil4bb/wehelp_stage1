@@ -63,7 +63,7 @@ for ch_item in hotels_ch:
 with open("hotels.csv", "w", encoding="utf-8", newline="") as f:
     writer = csv.DictWriter(
         f,
-        fieldnames=["name_ch", "name_en", "addr_ch", "addr_en", "phone", "rooms"],
+        fieldnames=["_id","name_ch", "name_en", "addr_ch", "addr_en", "phone", "rooms"],
         #fieldnames是欄位清單，決定輸出的key，也決定排列順序
         extrasaction="ignore",  # 忽略 dict 中多餘的鍵，避免報錯
         restval="" #缺值時補空字串
