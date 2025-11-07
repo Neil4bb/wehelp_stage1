@@ -88,15 +88,24 @@ async def logout(request: Request):
 
 @app.get("/hotel/{id}", response_class= HTMLResponse)
 async def hotel_info(request: Request, id: str):
-    id = int(id)
-    index = id - 1
-    if index < 0 or index >= len(merged):
-        hotel =None
-    else:
-        hotel = merged[index]
+    #id = int(id)
+    #index = id - 1
+    #if index < 0 or index >= len(merged):
+    #    hotel =None
+    #else:
+    #    hotel = merged[index]
+
+    #id存在判斷
+    try:
+        hotel = merged[int(id)-1]
+    except (ValueError, IndexError):
+        hotel = None
+    #if int(id)-1 in merged:
+    #這邊不能用這種if判斷
+    #檢查「list 中是否包含某個值」（不是索引判斷）
+    #dict中可檢查 key是否存在
 
     return templates.TemplateResponse("hotel.html", {
         "request":request,
-        "hotel": hotel,
-        "id": id
+        "hotel": hotel
     })

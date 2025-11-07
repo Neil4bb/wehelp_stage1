@@ -12,10 +12,10 @@
     </header>
     <main>
         <div class="card hotelData">
-            {% if id > 620 %}
-            <h3>查詢不到相關資料</h3>
-            {% else %}
+            {% if hotel %}
             <h3>{{ hotel["name_ch"] }}、{{ hotel["name_en"] }}、{{ hotel["phone"] }}</h3>
+            {% else %}
+            <h3>查詢不到相關資料</h3>
             {% endif %}
             <a href="/">返回首頁</a>
         </div>
