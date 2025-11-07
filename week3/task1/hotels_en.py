@@ -6,11 +6,15 @@ with urllib.request.urlopen(url_en) as response:
         data = json.load(response)
 
 hotels = data if isinstance(data, list) else data["list"]
+if isinstance(hotels, list):
+        print("list表單是一個list")
+else:
+        print("list其實是個dict")
 
 #print(len(hotels))
 
 #print(json.dumps(hotels[:3], ensure_ascii = False, indent=2))
 
-sample = hotels[0]
-print(sample.keys())
+#sample = hotels[0]
+#print(sample.keys())
         

@@ -7,12 +7,12 @@ with urllib.request.urlopen(url_ch) as response:
 
 hotels = data_ch if isinstance(data_ch, list) else data_ch["list"]
 
-print(len(hotels))
+#print(len(hotels))
 
 #print(json.dumps(hotels[:3], ensure_ascii = False, indent=2))
 
 sample = hotels[0]
-print(sample.keys())
+print(sample)
         
 
      
