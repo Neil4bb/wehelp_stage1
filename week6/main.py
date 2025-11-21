@@ -36,9 +36,9 @@ async def signup(request: Request,
     cursor = conn.cursor(dictionary=True)
 
     try:
-        # 1️⃣ 檢查 email 是否存在
+        # 1. 檢查 email 是否存在
         cursor.execute("SELECT * FROM member WHERE email=%s", (email,))
-        #cursor.execute 的第二個參數一定要是一包資料（tuple/list），
+        #cursor.execute 的第二個參數一定要是一組資料（tuple/list），
         #而 tuple 如果只有一個元素，就一定要加逗號。
         result = cursor.fetchone()
 
@@ -47,14 +47,14 @@ async def signup(request: Request,
             url = request.url_for("error").include_query_params(message="重複的電子郵件")
             return RedirectResponse(url=url, status_code=302)
 
-        # 2️⃣ 不重複 → 插入資料
+        # 2. 不重複 → 插入資料
         cursor.execute(
             "INSERT INTO member(name, email, password) VALUES(%s, %s, %s)",
             (username, email, password)
         )
         conn.commit()
 
-        # 3️⃣ 成功 → 回首頁
+        # 3. 成功 → 回首頁
         return RedirectResponse("/", status_code=302)
     
     finally:  #python會先跑finally才return
@@ -122,16 +122,32 @@ async def leaveMessage(request:Request, message: str = Form(...)):
 #        return RedirectResponse(url="/ohoh?message=信箱或密碼輸入錯誤", status_code=303)
 
 @app.post("/deleteMessage")
-async def delete(request:Request, message_id: str = Form(...), user_id: str = Form(...)):
+async def delete(request:Request, message_id: str = Form(...)):
+    user = request.session.get("USER")
+
 
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
 
-    cursor.execute("DELETE FROM message WHERE id=%s AND member_id=%s",(message_id,user_id))
-    conn.commit()
+    try:
+        cursor.execute("SELECT member_id FROM message WHERE id=%s",(message_id,))
+        writer = cursor.fetchone()
 
-    cursor.close()
-    conn.close()
+        if not writer: #查找不到 message id 的情況
+            url = request.url_for("error").include_query_params(message="此留言不存在")
+            return RedirectResponse(url=url, status_code=303)
+
+
+        if writer["member_id"] == user["id"]:  #使用者id 與留言者比對
+            cursor.execute("DELETE FROM message WHERE id=%s",(message_id,))
+            conn.commit()
+        else:
+            url = request.url_for("error").include_query_params(message="非此帳號留言，不允許刪除")
+            return RedirectResponse(url=url, status_code=303)
+
+    finally:
+        cursor.close()
+        conn.close()
 
     return RedirectResponse(url="/member", status_code=302)
 

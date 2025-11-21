@@ -39,8 +39,7 @@
                         <form action="/deleteMessage" method="post" 
                         style="display:inline;" onsubmit="return confirm('確定刪除這則留言嗎?');">
                             <!-- 傳 message.id 給後端 -->
-                            <input type="hidden" name="message_id" value="{{m.msg_id}}">
-                            <input type="hidden" name="user_id" value="{{m.m_id}}">
+                            <input type="hidden" name="message_id" value="{{m.msg_id}}"> 
                             <button type="submit">X</button>
                         </form>
                         {% endif %}
