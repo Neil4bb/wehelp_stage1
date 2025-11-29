@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 15vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(8, 22, 93, 0.714);
+    color:#ffffff;
+    
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+main {
+    margin-top: 15vh;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.card {
+    background: #fff;
+    padding: 24px 28px;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    width: 320px;                     /* 可調，或改成 min-width */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                        /* h2 與 form 的距離 */
+    text-align: center;               /* 讓 h2 置中 */
+    white-space: nowrap;
+
+}
+
+.card.hotelData {
+    width: fit-content;
+    max-width: 90%;
+    white-space: normal; /*允許自動換行*/
+    overflow-wrap: break-word; /*讓瀏覽器在必要時打斷長單字來避免文字溢出*/
+}
+
+.card h2 { margin: 0; }
+
+
+/* 表單直向排列 + 欄位間距用 gap 控 */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    text-align: left;                 /* 表單內容回到靠左，較易讀 */
+}
+
+.hotelInput {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    text-align: left;
+}
+
+/* 每個欄位一行 */
+.field { 
+    display: flex;
+    justify-content: center;  
+    gap: 1vw; 
+}
+
+.field input { 
+    width: 18vw;
+    height: 1.5vh;
+    padding: 6px 8px; 
+    border: 1px solid #ccc; 
+}
+
+/* 同意條款 + 按鈕：同列且整組置中 */
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;          /* 水平置中整組 */
+  align-items: center;
+  margin-top: 4px;
+}
+
+hr {
+  width: 90%;
+  border: none;
+  border-top: 2px solid #ccc;
+  margin: 5px auto;
+}
+
+.card ul {
+    list-style-type: none;  /* 移除小圓點 */
+    padding-left: 0;        /* 移除縮排 */
+}
+
+#loadQueryBtn {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*#checkBtn {
+    width: fit-content;
+    
+}*/

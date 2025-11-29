@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Page</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>    
+<body>
+    <header>
+        <h1>歡迎光臨，這是會員頁</h1>
+    </header>
+    <main>
+        <div class="card">
+            <h3>{{banana}}，歡迎登入系統</h3>
+            <a href="/logout">登出系統</a>
+
+            <hr>
+            
+            <h3>查詢會員姓名</h3>
+
+            <div class="field">
+                <input  id="searchInput" type="number">
+                <button id="searchBtn" type="button">查詢</button>
+            </div>
+
+            <div id="searchResult"></div>
+
+            <h3>更新我的姓名</h3>
+
+            <div class="field">
+                <input id="newNameInput" type="text">
+                <button id="newNameBtn" type="button">更新</button>
+            </div>
+
+            <div id="newNameResult"></div>
+
+            <h3>誰查詢了我</h3>
+
+            <button id="loadQueryBtn" type="button">更新</button>
+
+            <div id="querylist"></div>
+            
+            
+
+        </div>
+    </main>
+    <script src="/static/member.js"></script>
+</body>
+</html>
